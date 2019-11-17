@@ -1,4 +1,4 @@
-import { RouteConfig } from '@/router'
+import { RouteConfig } from './type'
 import { Store, GetterTree, MutationTree } from 'vuex'
 import { namespace } from 'vuex-class'
 export enum Getters {

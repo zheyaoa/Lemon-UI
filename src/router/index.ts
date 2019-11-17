@@ -1,12 +1,9 @@
-import VueRouter, { RouteConfig as Config } from 'vue-router'
+import VueRouter from 'vue-router'
 import Vue from 'vue'
 import Wrapper from 'packages/wrapper/index'
+import { RouteConfig } from 'packages/index'
 Vue.use(VueRouter)
-interface RouteConfig extends Config {
-	meta?: {
-		title: string
-	}
-}
+
 const routeConfig: RouteConfig[] = [
 	{
 		path: '/component',
@@ -53,4 +50,4 @@ const router: VueRouter = new VueRouter({
 	mode: 'history',
 	routes: routeConfig
 })
-export { RouteConfig, router, routeConfig as routes }
+export { router, routeConfig as routes }

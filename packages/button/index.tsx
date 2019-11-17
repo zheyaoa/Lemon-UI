@@ -5,7 +5,7 @@ import { Prop, Emit } from 'vue-property-decorator'
 
 interface Props {
 	size?: ButtonSize
-	type?: string
+	type?: ButtonType
 	plain?: boolean
 	round?: boolean
 	circle?: boolean
@@ -24,7 +24,7 @@ enum ButtonType {
 	primary = 'primary'
 }
 @Component
-class Button extends tsx.Component<Props, Events> {
+export default class Button extends tsx.Component<Props, Events> {
 	@Prop({ default: ButtonSize.medium }) size!: ButtonSize
 	@Prop({ default: ButtonType.primary }) type!: ButtonType
 	@Prop() disable?: boolean
@@ -50,4 +50,4 @@ class Button extends tsx.Component<Props, Events> {
 	}
 }
 
-export { Button, ButtonSize, ButtonType }
+export { ButtonSize, ButtonType }

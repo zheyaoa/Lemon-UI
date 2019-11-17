@@ -3,7 +3,7 @@ import App from './app'
 import { router, routes } from './router'
 import store from './store'
 import './common/reset.scss'
-import { registerRouterFactory } from 'packages/navigation/factory'
+import { registerRouterFactory } from 'packages/navigation/'
 
 registerRouterFactory(store, routes)
 new Vue({

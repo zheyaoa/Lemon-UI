@@ -1,6 +1,6 @@
 import Component from 'vue-class-component'
 import * as tsx from 'vue-tsx-support'
-import { Button, ButtonSize } from 'packages/index'
+import Button, { ButtonSize } from 'packages/button'
 
 @Component
 export default class ButtonView extends tsx.Component<{}> {

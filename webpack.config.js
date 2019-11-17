@@ -8,7 +8,9 @@ const devServer = {
   port: port,
   compress: true,
   open: true,
-  historyApiFallback: true,
+  historyApiFallback: {
+    index:'/static/'
+  },
 };
 
 module.exports = {
@@ -17,7 +19,7 @@ module.exports = {
   output: {
     filename: "index.[hash:7].js",
     path: path.resolve(__dirname, "playground"),
-    publicPath: '/'
+    publicPath: '/static'
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],

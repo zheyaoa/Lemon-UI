@@ -7,7 +7,7 @@ import {
 	Mutations as NavMutations
 } from '../factory'
 import { Watch } from 'vue-property-decorator'
-import { RouteConfig } from '@/router'
+import { RouteConfig } from '../type'
 import './menu.scss'
 
 @Component
