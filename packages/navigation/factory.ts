@@ -1,4 +1,4 @@
-import { RouteConfig } from './type'
+import { NavConfig } from './type'
 import { Store, GetterTree, MutationTree } from 'vuex'
 import { namespace } from 'vuex-class'
 export enum Getters {
@@ -6,8 +6,8 @@ export enum Getters {
 	majorActive = 'majorActive'
 }
 type RouteStore = {
-	routes: RouteConfig[]
-	active: RouteConfig
+	routes: NavConfig[]
+	active: NavConfig
 }
 export enum Mutations {
 	router = 'router',
@@ -37,7 +37,7 @@ const mutations: MutationTree<RouteStore> = {
 }
 export const registerRouterFactory = (
 	store: Store<any>,
-	routes: RouteConfig[]
+	routes: NavConfig[]
 ) => {
 	store.registerModule('router', {
 		namespaced: true,

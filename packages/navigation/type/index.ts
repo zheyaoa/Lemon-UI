@@ -1,8 +1,11 @@
-import { RouteConfig as Config } from 'vue-router'
-interface RouteConfig extends Config {
-	meta?: {
-		title: string
-	}
+import { RouteConfig } from 'vue-router'
+interface metaConfig {
+	title: string
+}
+interface NavConfig extends RouteConfig {
+	name: string
+	meta?: metaConfig
+	children?: NavConfig[]
 }
 
-export { RouteConfig }
+export { NavConfig }

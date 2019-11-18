@@ -1,12 +1,13 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import Wrapper from 'packages/wrapper/index'
-import { RouteConfig } from 'packages/index'
+import { NavConfig } from 'packages/navigation'
 Vue.use(VueRouter)
 
-const routeConfig: RouteConfig[] = [
+const routes: NavConfig[] = [
 	{
 		path: '/component',
+		name: 'component',
 		component: Wrapper,
 		meta: {
 			title: 'component'
@@ -14,6 +15,7 @@ const routeConfig: RouteConfig[] = [
 		children: [
 			{
 				path: '/component/page',
+				name: 'page',
 				component: () => import('../page1'),
 				meta: {
 					title: 'page1'
@@ -31,13 +33,15 @@ const routeConfig: RouteConfig[] = [
 	},
 	{
 		path: '/component2',
+		name: 'component2',
 		component: Wrapper,
 		meta: {
 			title: 'component2'
 		},
 		children: [
 			{
-				path: '/component1/page2',
+				path: '/component2/page2',
+				name: 'page2',
 				component: () => import('../page2'),
 				meta: {
 					title: 'page2'
@@ -48,6 +52,6 @@ const routeConfig: RouteConfig[] = [
 ]
 const router: VueRouter = new VueRouter({
 	mode: 'history',
-	routes: routeConfig
+	routes: routes
 })
-export { router, routeConfig as routes }
+export { router, routes }
