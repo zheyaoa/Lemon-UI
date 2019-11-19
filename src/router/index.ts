@@ -33,6 +33,30 @@ const routes: NavConfig[] = [
 				meta: {
 					title: 'button'
 				}
+			},
+			{
+				path: 'loading',
+				name: 'component:loading',
+				component: () => import('../view/loading'),
+				meta: {
+					title: 'loading'
+				}
+			},
+			{
+				path: 'input',
+				name: 'component:input',
+				component: () => import('@/view/input'),
+				meta: {
+					title: 'input'
+				}
+			},
+			{
+				path: 'panel',
+				name: 'component:panel',
+				component: () => import('@/view/panel'),
+				meta: {
+					title: 'panel'
+				}
 			}
 		]
 	},
