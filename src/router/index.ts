@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 const routes: NavConfig[] = [
 	{
+		path: '/',
+		name: '',
+		redirect: { name: 'component:page' }
+	},
+	{
 		path: '/component',
 		name: 'component',
 		component: Wrapper,
@@ -14,16 +19,16 @@ const routes: NavConfig[] = [
 		},
 		children: [
 			{
-				path: '/component/page',
-				name: 'page',
+				path: 'page',
+				name: 'component:page',
 				component: () => import('../page1'),
 				meta: {
 					title: 'page1'
 				}
 			},
 			{
-				path: '/component/button',
-				name: 'button',
+				path: 'button',
+				name: 'component:button',
 				component: () => import('../view/button'),
 				meta: {
 					title: 'button'
@@ -40,8 +45,8 @@ const routes: NavConfig[] = [
 		},
 		children: [
 			{
-				path: '/component2/page2',
-				name: 'page2',
+				path: 'page2',
+				name: 'component2:page2',
 				component: () => import('../page2'),
 				meta: {
 					title: 'page2'

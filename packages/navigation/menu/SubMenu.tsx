@@ -1,42 +1,39 @@
 import Component from 'vue-class-component'
 import * as tsx from 'vue-tsx-support'
 import './menu.scss'
-import { NavGetter, Getters as NavGetters } from '../factory'
 import { NavConfig } from '../type/'
-import { Watch } from 'vue-property-decorator'
+import { Prop } from 'vue-property-decorator'
 
+interface Props {
+	menus: NavConfig
+	active: string
+}
+interface Events {
+	onSubMenuClick: (munuIndex: string) => void
+}
 @Component
-export default class LeftMenu extends tsx.Component<{}> {
-	@NavGetter(NavGetters.majorActive)
-	public active!: NavConfig
-	public activeMiniSub?: NavConfig = {} as NavConfig
+export default class LeftMenu extends tsx.Component<Props, Events> {
+	@Prop() menus!: NavConfig
+	@Prop() active!: string
 	handleClick(item: NavConfig) {
-		if (this.activeMiniSub === item) return
-		this.activeMiniSub = item
-		this.$router.push({ path: item.path })
+		if (!(item.name == this.active)) {
+			this.$emit('subMenuClick', item.name)
+		}
 	}
-	// @Watch('active', { immediate: true })
-	// handleActiveUpdate() {
-	// 	this.activeMiniSub = this.active.children?.[0]
-	// 	this.$router.push({
-	// 		path: this.active.children?.[0]?.path ?? this.active.path
-	// 	})
-	// }
-
 	render() {
-		const { active, handleClick, activeMiniSub } = this
+		const { menus, active, handleClick } = this
 		return (
 			<div class="sub-menu">
 				<div class="sub-menu-title">
-					{active.meta?.title || active.name}
+					{menus.meta?.title || menus.name}
 				</div>
 				<div>
-					{active.children?.map(item => {
+					{menus.children?.map(item => {
 						return (
 							<div
 								class={[
 									'sub-menu-tab',
-									activeMiniSub === item &&
+									item.name.endsWith(active) &&
 										'sub-menu-active-tab'
 								]}
 								onClick={() => handleClick(item)}

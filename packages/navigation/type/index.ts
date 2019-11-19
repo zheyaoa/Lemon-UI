@@ -8,4 +8,8 @@ interface NavConfig extends RouteConfig {
 	children?: NavConfig[]
 }
 
-export { NavConfig }
+interface NameMap {
+	[key: string]: NavConfig
+}
+
+export { NavConfig, NameMap }

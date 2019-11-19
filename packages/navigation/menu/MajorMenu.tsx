@@ -1,39 +1,38 @@
 import Component from 'vue-class-component'
 import * as tsx from 'vue-tsx-support'
-import {
-	NavGetter,
-	Getters as NavGetters,
-	NavMutation,
-	Mutations as NavMutations
-} from '../factory'
-import { Watch } from 'vue-property-decorator'
 import { NavConfig } from '../type'
 import './menu.scss'
+import { Prop } from 'vue-property-decorator'
+
+interface Props {
+	menus: NavConfig[]
+	active: string
+}
+
+interface Events {
+	onMajorMenuClick: (menuIndex: string) => void
+}
 
 @Component
-export default class MajorMenu extends tsx.Component<{}, {}, {}> {
-	@NavGetter(NavGetters.router)
-	public routes!: NavConfig[]
-	@NavGetter(NavGetters.majorActive)
-	public active!: NavConfig
-	@NavMutation(NavMutations.majorActive)
-	updateActive!: (route: NavConfig) => void
-	// @Watch('active')
-	// handleActiveUpdate() {
-	// 	this.$router.push({ path: this.active.path })
-	// }
+export default class MajorMenu extends tsx.Component<Props, Events, {}> {
+	@Prop() menus!: NavConfig[]
+	@Prop() active!: string
 	handleClick(route: NavConfig) {
-		this.updateActive(route)
+		if (this.active == route.name) return
+		this.$emit('majorMenuClick', route.name)
 	}
 	render() {
-		const { routes, handleClick } = this
+		const { menus, handleClick } = this
 		return (
 			<div class="major-menu">
 				<div class="major-menu-icon">{this.$slots.default}</div>
-				{routes.map(route => {
+				{menus.map(route => {
 					return (
 						<div
-							class={this.active === route && 'major-menu-active'}
+							class={
+								this.active === route.name &&
+								'major-menu-active'
+							}
 							onClick={() => handleClick(route)}
 						>
 							{route.meta?.title ?? route.name}
