@@ -1,0 +1,38 @@
+.le-input{
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    display: flex;
+    color: #909399;
+    border: 1px solid #dedfe6;
+    border-radius: 4px;
+    span{
+        padding: 0 20px;
+        background: #f5f7fa;
+    }
+    .le-input-prpend{
+        border-right: 1px solid #dedfe6;
+    }
+    .le-input-append{
+        border-left: 1px solid #dedfe6;
+    }
+    .le-input-inner{
+        box-sizing: border-box;
+        color: #606266;
+        font-size: 16px;
+        padding: 0 15px 0 15px;
+        height: 100%;
+        width: 100%;
+        white-space: nowrap;
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1)
+    }
+    .le-input-disabled{
+        background-color: #f5f7fa;
+        color: #c0c4cc;
+        cursor: not-allowed;
+    }
+}
+.le-input-group{
+    width: 100%;
+}
