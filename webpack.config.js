@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') 
 
 const target = process.env.TARGET || 'http://127.0.0.1'
 const port = process.env.PORT || 8080
@@ -16,6 +17,7 @@ const devServer = {
 module.exports = {
   entry: "./src/index.ts",
   devtool: 'inline-source-map',
+  target: 'web',
   output: {
     filename: "index.[hash:7].js",
     path: path.resolve(__dirname, "playground"),
@@ -37,7 +39,15 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader","sass-loader"],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options:{
+              publicPath: './'
+            }
+          },
+          "css-loader",
+          "sass-loader"],
         exclude: [/node_modules/]
       },
       {
@@ -71,6 +81,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       favicon: "public/favicon.ico"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles/[name].[hash:7].css",
+      chunkFilename: "styles/[id].[hash:7].css"
     })
   ],
   devServer
