@@ -1,6 +1,7 @@
 import Component from 'vue-class-component'
 import * as tsx from 'vue-tsx-support'
 import Input from 'packages/input'
+import Panel from 'packages/panel'
 
 @Component
 export default class InputView extends tsx.Component<{}> {
@@ -8,14 +9,21 @@ export default class InputView extends tsx.Component<{}> {
 	render() {
 		return (
 			<div>
-				<Input
-					value={this.value}
-					onInput={v => (this.value = v as string)}
-				>
-					<slot slot="prepend">aabbcc</slot>
-					<slot slot="append">eeffgg</slot>
-				</Input>
-				<Input value={this.value} disabled></Input>
+				<Panel title="正常Input">
+					<Input value={this.value}></Input>
+				</Panel>
+				<Panel title="disabled Input">
+					<Input value={this.value} disabled></Input>
+				</Panel>
+				<Panel title="prepend">
+					<Input
+						value={this.value}
+						onInput={v => (this.value = v as string)}
+					>
+						<slot slot="prepend">aabbcc</slot>
+						<slot slot="append">eeffgg</slot>
+					</Input>
+				</Panel>
 			</div>
 		)
 	}

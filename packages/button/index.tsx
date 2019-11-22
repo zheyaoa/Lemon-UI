@@ -7,8 +7,6 @@ interface Props {
 	size?: ButtonSize
 	type?: ButtonType
 	plain?: boolean
-	round?: boolean
-	circle?: boolean
 	disable?: boolean
 	icon?: string
 }
@@ -21,15 +19,15 @@ enum ButtonSize {
 	medium = 'medium'
 }
 enum ButtonType {
-	primary = 'primary'
+	primary = 'primary',
+	default = 'default',
+	danger = 'danger'
 }
 @Component
 export default class Button extends tsx.Component<Props, Events> {
 	@Prop({ default: ButtonSize.medium }) size!: ButtonSize
-	@Prop({ default: ButtonType.primary }) type!: ButtonType
+	@Prop({ default: ButtonType.default }) type!: ButtonType
 	@Prop() disable?: boolean
-	@Prop({ default: false }) circle!: boolean
-	@Prop({ default: false }) round!: boolean
 
 	@Emit('click')
 	onClick(event: MouseEvent) {
@@ -37,10 +35,14 @@ export default class Button extends tsx.Component<Props, Events> {
 	}
 
 	render() {
-		const { disable, size, type, circle, round, onClick } = this
+		const { disable, size, type, onClick } = this
 		return (
 			<button
-				class={[size, type, circle && 'circle', round && 'round']}
+				class={[
+					'le-button',
+					size && 'button-size-' + size,
+					type && 'button-type-' + type
+				]}
 				disabled={disable}
 				onClick={onClick}
 			>
